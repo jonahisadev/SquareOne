@@ -24,4 +24,11 @@ public abstract class CoreGame {
 	 */
 	public abstract void cleanUp();
 
+	/**
+	 * Call for the window to close, and resources to be cleaned up
+	 */
+	public void quit() {
+		Window.close();
+	}
+
 }

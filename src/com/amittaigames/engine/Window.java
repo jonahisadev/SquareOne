@@ -86,6 +86,13 @@ public class Window {
 	}
 
 	/**
+	 * Set the window to close
+	 */
+	public static void close() {
+		glfwSetWindowShouldClose(window, true);
+	}
+
+	/**
 	 * Check if a key is pressed
 	 * @param key Key code
 	 * @return True if the key is pressed, false if otherwise
