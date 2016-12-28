@@ -1,0 +1,146 @@
+package com.amittaigames.engine;
+
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL15.*;
+
+public class Render {
+
+	public void clear(int r, int g, int b) {
+		glClearColor((float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+	
+	public void drawRect(Rect rect) {
+		drawMesh(rect.getMesh());
+	}
+	
+	public void drawTexturedMesh(TexturedMesh mesh) {
+		glEnable(GL_TEXTURE_2D);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glBindTexture(GL_TEXTURE_2D, mesh.getTexture());
+		
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.getPos());
+		glVertexPointer(2, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.getColor());
+		glColorPointer(3, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_COLOR_ARRAY);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.getCoords());
+		glTexCoordPointer(2, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.getList());
+		glDrawElements(GL_TRIANGLES, mesh.getCount(), GL_UNSIGNED_INT, 0);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+	}
+	
+	public void drawMesh(Mesh mesh) {
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.getPos());
+		glVertexPointer(2, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.getColor());
+		glColorPointer(3, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_COLOR_ARRAY);
+		
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.getList());
+		glDrawElements(GL_TRIANGLES, mesh.getCount(), GL_UNSIGNED_INT, 0);
+		
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+	}
+	
+	public void drawText(String str, float x, float y, Font f) {
+		float cursor = x;
+		
+		glEnable(GL_TEXTURE_2D);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
+		glBindTexture(GL_TEXTURE_2D, f.getTexture());
+		
+		int vUV = 0;
+		int vPos = 0;
+		int vList = 0;
+		
+		char[] buf = str.toCharArray();
+		for (int i = 0; i < buf.length; i++) {
+			Font.FontData fdata = f.getDataForChar(buf[i]);
+			
+			vUV = glGenBuffers();
+			vPos = glGenBuffers();
+			vList = glGenBuffers();
+			
+			float[] uv = {
+				fdata.x, fdata.y,
+				fdata.x + fdata.width, fdata.y,
+				fdata.x + fdata.width, fdata.y + fdata.height,
+				fdata.x, fdata.y + fdata.height
+			};
+			FloatBuffer bUV = Buffers.createFloatBuffer(uv);
+			glBindBuffer(GL_ARRAY_BUFFER, vUV);
+			glBufferData(GL_ARRAY_BUFFER, bUV, GL_STATIC_DRAW);
+			glTexCoordPointer(2, GL_FLOAT, 0, 0);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			
+			float[] pos = {
+				cursor + fdata.xoff, y + fdata.yoff,
+				cursor + fdata.xoff + (fdata.width * f.getImageWidth() * f.getScale()), y + fdata.yoff,
+				cursor + fdata.xoff + (fdata.width * f.getImageWidth() * f.getScale()), y + (fdata.height * f.getImageWidth() * f.getScale()) + fdata.yoff,
+				cursor + fdata.xoff, y + (fdata.height * f.getImageWidth() * f.getScale()) + fdata.yoff
+			};
+			FloatBuffer bPos = Buffers.createFloatBuffer(pos);
+			glBindBuffer(GL_ARRAY_BUFFER, vPos);
+			glBufferData(GL_ARRAY_BUFFER, bPos, GL_STATIC_DRAW);
+			glVertexPointer(2, GL_FLOAT, 0, 0);
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+			//glBindBuffer(GL_ARRAY_BUFFER, f.getColor());
+			//glColorPointer(3, GL_FLOAT, 0, 0);
+			//glEnableClientState(GL_COLOR_ARRAY);
+			
+			int[] list = {
+				0, 1, 2,
+				0, 3, 2
+			};
+			IntBuffer bList = Buffers.createIntBuffer(list);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vList);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, bList, GL_STATIC_DRAW);
+			
+			glDrawElements(GL_TRIANGLES, list.length, GL_UNSIGNED_INT, 0);
+			
+			glDeleteBuffers(vUV);
+			glDeleteBuffers(vPos);
+			glDeleteBuffers(vList);
+			
+			cursor += fdata.xadv;
+		}
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		
+		glBindTexture(GL_TEXTURE_2D, 0);
+	}
+
+}
