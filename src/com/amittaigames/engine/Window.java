@@ -12,7 +12,14 @@ public class Window {
 	
 	private static CoreGame game;
 	private static Render render;
-	
+
+	/**
+	 * Create window and OpenGL context
+	 * @param title Window title
+	 * @param width Window width
+	 * @param height Window height
+	 * @param game CoreGame instance
+	 */
 	public static void init(String title, int width, int height, CoreGame game) {
 		if (!glfwInit()) {
 			System.err.println("Could not initialize window system!");
@@ -45,7 +52,10 @@ public class Window {
 		
 		start();
 	}
-	
+
+	/**
+	 * Start the game loop
+	 */
 	private static void start() {
 		game.init();
 		
@@ -74,7 +84,12 @@ public class Window {
 		
 		System.exit(0);
 	}
-	
+
+	/**
+	 * Check if a key is pressed
+	 * @param key Key code
+	 * @return True if the key is pressed, false if otherwise
+	 */
 	public static boolean isKeyDown(int key) {
 		int code = glfwGetKey(window, key);
 		

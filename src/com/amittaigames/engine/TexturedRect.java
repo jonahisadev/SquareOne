@@ -15,7 +15,12 @@ public class TexturedRect {
 		this.height = height;
 		init(path, external);
 	}
-	
+
+	/**
+	 * Initialize a TexturedRect with given information
+	 * @param path Path to texture
+	 * @param external Internal or external image
+	 */
 	private void init(String path, boolean external) {
 		float[] pos = {
 			x, y,
@@ -45,7 +50,12 @@ public class TexturedRect {
 		
 		mesh = new TexturedMesh(path, pos, color, coords, list, external);
 	}
-	
+
+	/**
+	 * Translate position of the texture
+	 * @param x X component
+	 * @param y Y component
+	 */
 	public void translate(float x, float y) {
 		this.x += x;
 		this.y += y;
@@ -59,7 +69,13 @@ public class TexturedRect {
 		
 		mesh.updatePosition(pos);
 	}
-	
+
+	/**
+	 * Set the color of the texture
+	 * @param r Red component
+	 * @param g Green component
+	 * @param b Blue component
+	 */
 	public void setColor(int r, int g, int b) {
 		float rr = (float)r/255.0f;
 		float gg = (float)g/255.0f;
@@ -73,6 +89,13 @@ public class TexturedRect {
 		}
 		
 		mesh.updateColor(color);
+	}
+
+	/**
+	 * Call mesh deletion
+	 */
+	public void delete() {
+		this.mesh.delete();
 	}
 
 	public float getX() {

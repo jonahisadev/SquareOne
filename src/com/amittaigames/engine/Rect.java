@@ -15,7 +15,10 @@ public class Rect {
 		this.height = height;
 		init();
 	}
-	
+
+	/**
+	 * Initialize a Rectangle with given information
+	 */
 	private void init() {
 		float[] pos = {
 			x, y,
@@ -38,7 +41,12 @@ public class Rect {
 		
 		this.mesh = new Mesh(pos, color, list);
 	}
-	
+
+	/**
+	 * Translate the position
+	 * @param x X component
+	 * @param y Y component
+	 */
 	public void translate(float x, float y) {
 		this.x += x;
 		this.y += y;
@@ -52,7 +60,13 @@ public class Rect {
 		
 		mesh.updatePosition(pos);
 	}
-	
+
+	/**
+	 * Set the color
+	 * @param r Red component
+	 * @param g Green component
+	 * @param b Blue component
+	 */
 	public void setColor(int r, int g, int b) {
 		float rr = (float)r/255.0f;
 		float gg = (float)g/255.0f;
@@ -66,6 +80,13 @@ public class Rect {
 		}
 		
 		mesh.updateColor(color);
+	}
+
+	/**
+	 * Call mesh deletion
+	 */
+	public void delete() {
+		this.mesh.delete();
 	}
 
 	public float getX() {

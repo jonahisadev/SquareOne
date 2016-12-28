@@ -61,7 +61,13 @@ public class Font {
 		this.scale = scale;
 		this.base = base;
 	}
-	
+
+	/**
+	 * Load an internal font from a path
+	 * @param path Path to font and image sans file extension
+	 * @param id A specified ID number to use when getting the font
+	 * @param scale A scale at which to render the font
+	 */
 	public static void load(String path, int id, float scale) {
 		String fnt = Util.readInternalFile(path + ".fnt");
 		String[] fntLines = fnt.split("\n");
@@ -120,13 +126,20 @@ public class Font {
 		String name = temp[temp.length - 1];
 		if (vTexture != 0) {
 			Font font = new Font(fdata, vTexture, id, imgw, scale, base);
+			font.vColor = glGenBuffers();
 			font.setColor(255, 255, 255);
 			loaded.put(name + " " + id, font);
 		} else {
 			System.err.println("Could not load font " + name + " " + id);
 		}
 	}
-	
+
+	/**
+	 * Sets the font color
+	 * @param r Red component
+	 * @param g Green component
+	 * @param b Blue component
+	 */
 	public void setColor(int r, int g, int b) {
 		float[] color = new float[12];
 		for (int i = 0; i < 12; i += 3) {
@@ -139,15 +152,32 @@ public class Font {
 		glBufferData(GL_ARRAY_BUFFER, buf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
+
+	/**
+	 * Gets character data
+	 * @param c Character
+	 * @return Data for specified character
+	 */
 	public FontData getDataForChar(char c) {
 		return this.data[c];
 	}
-	
+
+	/**
+	 * Return loaded font
+	 * @param name "Name ID"
+	 * @return Loaded font
+	 */
 	public static Font get(String name) {
 		return loaded.get(name);
 	}
-	
+
+	/**
+	 * Parses character line in *.fnt file
+	 * @param line Line of text to parse
+	 * @param data Font data array to modify
+	 * @param imgw Image width (and height)
+	 * @param scale Scale at which to render the font
+	 */
 	private static void parseCharLine(String line, FontData[] data, int imgw, float scale) {
 		int index_id = 			line.indexOf("id");
 		int index_x = 			line.indexOf("x");
@@ -179,23 +209,44 @@ public class Font {
 		data[id] = new FontData((float)x/imgw, (float)y/imgw, 
 				(float)width/imgw, (float)height/imgw, xoff, yoff, xadv);
 	}
-	
+
+	/**
+	 * Return texture VBO
+	 * @return texture VBO
+	 */
 	public int getTexture() {
 		return vTexture;
 	}
-	
+
+	/**
+	 * Return color VBO
+	 * @return color VBO
+	 */
 	public int getColor() {
 		return vColor;
 	}
-	
+
+	/**
+	 * Return image size
+	 * @return image size
+	 */
 	public int getImageWidth() {
 		return imgw;
 	}
-	
+
+
+	/**
+	 * Return scale at which to render the font
+	 * @return scale at which to render the font
+	 */
 	public float getScale() {
 		return scale;
 	}
-	
+
+	/**
+	 * Return the line base of the font
+	 * @return line base of the font
+	 */
 	public float getBase() {
 		return base;
 	}

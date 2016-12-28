@@ -24,7 +24,10 @@ public class Mesh {
 		this.vCount = list.length;
 		init();
 	}
-	
+
+	/**
+	 * Initialize the OpenGL object with given data
+	 */
 	private void init() {
 		vPos = glGenBuffers();
 		updatePosition(this.pos);
@@ -38,22 +41,33 @@ public class Mesh {
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, listBuf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
-	
+
+	/**
+	 * Update position data
+	 * @param data position array
+	 */
 	public void updatePosition(float[] data) {
 		FloatBuffer posBuf = Buffers.createFloatBuffer(data);
 		glBindBuffer(GL_ARRAY_BUFFER, vPos);
 		glBufferData(GL_ARRAY_BUFFER, posBuf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
-	public void updateColor(float[] color) {
+
+	/**
+	 * Update color data
+	 * @param data color array
+	 */
+	public void updateColor(float[] data) {
 		FloatBuffer colorBuf = Buffers.createFloatBuffer(color);
 		glBindBuffer(GL_ARRAY_BUFFER, vColor);
 		glBufferData(GL_ARRAY_BUFFER, colorBuf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
-	public void destroy() {
+
+	/**
+	 * Delete OpenGL buffers
+	 */
+	public void delete() {
 		glDeleteBuffers(vPos);
 		glDeleteBuffers(vColor);
 		glDeleteBuffers(vList);

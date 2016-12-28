@@ -36,7 +36,11 @@ public class TexturedMesh {
 		
 		init(path);
 	}
-	
+
+	/**
+	 * Initialize a TexturedMesh with given information
+	 * @param path Path to texture
+	 */
 	private void init(String path) {
 		vPos = glGenBuffers();
 		updatePosition(pos);
@@ -85,29 +89,44 @@ public class TexturedMesh {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Update position data
+	 * @param data Position data
+	 */
 	public void updatePosition(float[] data) {
 		FloatBuffer buf = Buffers.createFloatBuffer(data);
 		glBindBuffer(GL_ARRAY_BUFFER, vPos);
 		glBufferData(GL_ARRAY_BUFFER, buf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
+
+	/**
+	 * Update color data
+	 * @param data Color data
+	 */
 	public void updateColor(float[] data) {
 		FloatBuffer buf = Buffers.createFloatBuffer(data);
 		glBindBuffer(GL_ARRAY_BUFFER, vColor);
 		glBufferData(GL_ARRAY_BUFFER, buf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
+
+	/**
+	 * Update UV mapping data
+	 * @param data UV mapping data
+	 */
 	public void updateCoords(float[] data) {
 		FloatBuffer buf = Buffers.createFloatBuffer(data);
 		glBindBuffer(GL_ARRAY_BUFFER, vCoords);
 		glBufferData(GL_ARRAY_BUFFER, buf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
-	
-	public void destroy() {
+
+	/**
+	 * Delete OpenGL buffers
+	 */
+	public void delete() {
 		glDeleteBuffers(vPos);
 		glDeleteBuffers(vColor);
 		glDeleteBuffers(vCoords);

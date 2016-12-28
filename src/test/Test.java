@@ -6,7 +6,6 @@ public class Test extends CoreGame {
 
 	private Rect rect;
 	private Font mainFont;
-	private TexturedRect trect;
 	
 	public static void main(String[] args) {
 		Window.init("Test", 800, 600, new Test());
@@ -19,8 +18,7 @@ public class Test extends CoreGame {
 		
 		Font.load("/fonts/Helvetica", 1, 0.5f);
 		mainFont = Font.get("Helvetica 1");
-		
-		trect = new TexturedRect(400, 400, 64, 64, "/textures/Brick.png", false);
+		mainFont.setColor(0, 0, 0);
 	}
 
 	@Override
@@ -30,8 +28,6 @@ public class Test extends CoreGame {
 		
 		r.drawText("X: " + (int)rect.getX(), 5, 5, mainFont);
 		r.drawText("Y: " + (int)rect.getY(), 5, 40, mainFont);
-		
-		r.drawTexturedMesh(trect.getMesh());
 	}
 
 	@Override
@@ -52,7 +48,7 @@ public class Test extends CoreGame {
 
 	@Override
 	public void cleanUp() {
-		rect.getMesh().destroy();
+		rect.delete();
 	}
 	
 }

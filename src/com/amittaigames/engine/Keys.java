@@ -2,6 +2,9 @@ package com.amittaigames.engine;
 
 public class Keys {
 
+	/**
+	 * Stolen- borrowed... from GLFW source
+	 */
 	public static final int
 			KEY_SPACE         = 32,
 			KEY_APOSTROPHE    = 39,

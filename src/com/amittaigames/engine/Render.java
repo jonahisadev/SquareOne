@@ -8,15 +8,40 @@ import static org.lwjgl.opengl.GL15.*;
 
 public class Render {
 
+	/**
+	 * Clear the color buffer
+	 * @param r Red component
+	 * @param g Green component
+	 * @param b Blue component
+	 */
 	public void clear(int r, int g, int b) {
 		glClearColor((float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
-	
+
+	/**
+	 * Wrapper for mesh drawing
+	 * @param rect Rect object
+	 * @see com.amittaigames.engine.Rect   
+	 */
 	public void drawRect(Rect rect) {
 		drawMesh(rect.getMesh());
 	}
-	
+
+	/**
+	 * Wrapper for textured mesh drawing
+	 * @param rect TexturedRect object
+	 * @see com.amittaigames.engine.TexturedRect    
+	 */
+	public void drawTexturedRect(TexturedRect rect) {
+		drawTexturedMesh(rect.getMesh());
+	}
+
+	/**
+	 * Draws a TexturedMesh
+	 * @param mesh TexturedMesh object
+	 * @see com.amittaigames.engine.TexturedMesh
+	 */
 	public void drawTexturedMesh(TexturedMesh mesh) {
 		glEnable(GL_TEXTURE_2D);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -46,7 +71,12 @@ public class Render {
 		glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
-	
+
+	/**
+	 * Draws a Mesh
+	 * @param mesh Mesh object
+	 * @see com.amittaigames.engine.Mesh   
+	 */
 	public void drawMesh(Mesh mesh) {
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getPos());
 		glVertexPointer(2, GL_FLOAT, 0, 0);
@@ -65,7 +95,14 @@ public class Render {
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisableClientState(GL_COLOR_ARRAY);
 	}
-	
+
+	/**
+	 * Draw a string
+	 * @param str String to render
+	 * @param x X component (leftmost)
+	 * @param y Y component (topmost)
+	 * @param f Font to render with
+	 */
 	public void drawText(String str, float x, float y, Font f) {
 		float cursor = x;
 		
@@ -112,9 +149,10 @@ public class Render {
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-			//glBindBuffer(GL_ARRAY_BUFFER, f.getColor());
-			//glColorPointer(3, GL_FLOAT, 0, 0);
-			//glEnableClientState(GL_COLOR_ARRAY);
+			glBindBuffer(GL_ARRAY_BUFFER, f.getColor());
+			glColorPointer(3, GL_FLOAT, 0, 0);
+			glEnableClientState(GL_COLOR_ARRAY);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
 			
 			int[] list = {
 				0, 1, 2,
