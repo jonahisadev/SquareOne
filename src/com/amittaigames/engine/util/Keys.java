@@ -1,4 +1,4 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.util;
 
 public class Keys {
 

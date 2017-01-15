@@ -15,6 +15,13 @@ was a good learning experience, and I can make games now.
 
 * LWJGL 3.1
 
+### Features
+
+* Easy to get up and running
+* Basic quad/texture rendering
+* Font loading (.fnt/.bmp)
+* Text rendering
+
 ### Other notes
 
 I will be updating this if I notice any bugs in the process

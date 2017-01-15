@@ -1,4 +1,8 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.graphics;
+
+import com.amittaigames.engine.util.Buffers;
+import com.amittaigames.engine.util.FileIO;
+import org.lwjgl.opengl.GL11;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -69,7 +73,7 @@ public class Font {
 	 * @param scale A scale at which to render the font
 	 */
 	public static void load(String path, int id, float scale) {
-		String fnt = Util.readInternalFile(path + ".fnt");
+		String fnt = FileIO.readInternalFile(path + ".fnt");
 		String[] fntLines = fnt.split("\n");
 		FontData[] fdata = new FontData[128];
 		int vTexture = 0;
@@ -96,7 +100,7 @@ public class Font {
 			glBindTexture(GL_TEXTURE_2D, vTexture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.getWidth(), img.getHeight(), 0,
+			GL11.glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.getWidth(), img.getHeight(), 0,
 					GL_RGBA, GL_UNSIGNED_BYTE, Buffers.createIntBuffer(data));
 			glBindTexture(GL_TEXTURE_2D, 0);
 		} catch (Exception e) {

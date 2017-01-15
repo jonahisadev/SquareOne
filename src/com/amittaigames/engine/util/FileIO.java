@@ -1,13 +1,12 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.util;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 
-public class Util {
+public class FileIO {
 
-	private Util() {}
+	private FileIO() {}
 
 	/**
 	 * Read internal file
@@ -15,7 +14,7 @@ public class Util {
 	 * @return String contents of file
 	 */
 	public static String readInternalFile(String path) {
-		BufferedReader br = new BufferedReader(new InputStreamReader(Util.class.getResourceAsStream(path)));
+		BufferedReader br = new BufferedReader(new InputStreamReader(FileIO.class.getResourceAsStream(path)));
 		StringBuilder sb = new StringBuilder();
 		
 		try {

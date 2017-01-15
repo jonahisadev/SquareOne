@@ -1,5 +1,6 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.graphics;
 
+import com.amittaigames.engine.CoreGame;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 

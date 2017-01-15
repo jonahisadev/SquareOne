@@ -1,6 +1,11 @@
 package test;
 
 import com.amittaigames.engine.*;
+import com.amittaigames.engine.graphics.Font;
+import com.amittaigames.engine.graphics.Rect;
+import com.amittaigames.engine.graphics.Render;
+import com.amittaigames.engine.graphics.Window;
+import com.amittaigames.engine.util.Keys;
 
 public class Test extends CoreGame {
 

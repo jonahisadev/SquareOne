@@ -1,4 +1,6 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.graphics;
+
+import com.amittaigames.engine.util.Buffers;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

@@ -1,5 +1,8 @@
 package com.amittaigames.engine;
 
+import com.amittaigames.engine.graphics.Render;
+import com.amittaigames.engine.graphics.Window;
+
 public abstract class CoreGame {
 
 	/**

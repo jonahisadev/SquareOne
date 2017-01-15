@@ -1,4 +1,6 @@
-package com.amittaigames.engine;
+package com.amittaigames.engine.graphics;
+
+import com.amittaigames.engine.util.Buffers;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -22,7 +24,7 @@ public class Render {
 	/**
 	 * Wrapper for mesh drawing
 	 * @param rect Rect object
-	 * @see com.amittaigames.engine.Rect   
+	 * @see Rect   
 	 */
 	public void drawRect(Rect rect) {
 		drawMesh(rect.getMesh());
@@ -31,7 +33,7 @@ public class Render {
 	/**
 	 * Wrapper for textured mesh drawing
 	 * @param rect TexturedRect object
-	 * @see com.amittaigames.engine.TexturedRect    
+	 * @see TexturedRect    
 	 */
 	public void drawTexturedRect(TexturedRect rect) {
 		drawTexturedMesh(rect.getMesh());
@@ -40,7 +42,7 @@ public class Render {
 	/**
 	 * Draws a TexturedMesh
 	 * @param mesh TexturedMesh object
-	 * @see com.amittaigames.engine.TexturedMesh
+	 * @see TexturedMesh
 	 */
 	public void drawTexturedMesh(TexturedMesh mesh) {
 		glEnable(GL_TEXTURE_2D);
@@ -75,7 +77,7 @@ public class Render {
 	/**
 	 * Draws a Mesh
 	 * @param mesh Mesh object
-	 * @see com.amittaigames.engine.Mesh   
+	 * @see Mesh   
 	 */
 	public void drawMesh(Mesh mesh) {
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getPos());
