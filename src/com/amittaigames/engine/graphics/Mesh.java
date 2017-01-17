@@ -60,7 +60,7 @@ public class Mesh {
 	 * @param data color array
 	 */
 	public void updateColor(float[] data) {
-		FloatBuffer colorBuf = Buffers.createFloatBuffer(color);
+		FloatBuffer colorBuf = Buffers.createFloatBuffer(data);
 		glBindBuffer(GL_ARRAY_BUFFER, vColor);
 		glBufferData(GL_ARRAY_BUFFER, colorBuf, GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);

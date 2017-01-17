@@ -21,6 +21,7 @@ was a good learning experience, and I can make games now.
 * Basic quad/texture rendering
 * Font loading (.fnt/.bmp)
 * Text rendering
+* Networking
 
 ### Other notes
 

@@ -1,16 +1,13 @@
 package test;
 
 import com.amittaigames.engine.*;
-import com.amittaigames.engine.graphics.Font;
-import com.amittaigames.engine.graphics.Rect;
-import com.amittaigames.engine.graphics.Render;
-import com.amittaigames.engine.graphics.Window;
+import com.amittaigames.engine.graphics.*;
 import com.amittaigames.engine.util.Keys;
 
 public class Test extends CoreGame {
 
 	private Rect rect;
-	private Font mainFont;
+	private Rect test;
 	
 	public static void main(String[] args) {
 		Window.init("Test", 800, 600, new Test());
@@ -19,11 +16,12 @@ public class Test extends CoreGame {
 	@Override
 	public void init() {
 		rect = new Rect(100, 100, 100, 100);
-		rect.setColor(128, 128, 128);
+		rect.setColor(255, 255, 255);
 		
-		Font.load("/fonts/Helvetica", 1, 0.5f);
-		mainFont = Font.get("Helvetica 1");
-		mainFont.setColor(0, 0, 0);
+		test = new Rect(500, 50, 50, 50);
+		test.setColor(0, 0, 0);
+
+		Animator.translate(rect, 1000, 500, 100);
 	}
 
 	@Override
@@ -31,29 +29,18 @@ public class Test extends CoreGame {
 		r.clear(0, 255, 128);
 		r.drawRect(rect);
 		
-		r.drawText("X: " + (int)rect.getX(), 5, 5, mainFont);
-		r.drawText("Y: " + (int)rect.getY(), 5, 40, mainFont);
+		r.drawRect(test);
 	}
 
 	@Override
 	public void update(float delta) {
-		if (Window.isKeyDown(Keys.KEY_D)) {
-			rect.translate(20 * delta, 0);
-		}
-		if (Window.isKeyDown(Keys.KEY_A)) {
-			rect.translate(-20 * delta, 0);
-		}
-		if (Window.isKeyDown(Keys.KEY_W)) {
-			rect.translate(0, -20 * delta);
-		}
-		if (Window.isKeyDown(Keys.KEY_S)) {
-			rect.translate(0, 20 * delta);
-		}
+		
 	}
 
 	@Override
 	public void cleanUp() {
 		rect.delete();
+		test.delete();
 	}
 	
 }
