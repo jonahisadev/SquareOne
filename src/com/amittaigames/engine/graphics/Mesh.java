@@ -7,7 +7,7 @@ import java.nio.IntBuffer;
 
 import static org.lwjgl.opengl.GL15.*;
 
-public class Mesh {
+public class Mesh extends Renderable {
 
 	private float[] pos;
 	private float[] color;

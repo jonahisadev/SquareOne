@@ -1,6 +1,6 @@
 package com.amittaigames.engine.graphics;
 
-public class TexturedRect {
+public class TexturedRect extends Renderable {
 
 	private float x;
 	private float y;

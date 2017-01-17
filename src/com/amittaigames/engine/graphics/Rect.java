@@ -1,6 +1,6 @@
 package com.amittaigames.engine.graphics;
 
-public class Rect {
+public class Rect extends Renderable {
 
 	private float x;
 	private float y;

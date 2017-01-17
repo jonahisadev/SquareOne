@@ -67,9 +67,9 @@ public class Window {
 		
 		while (!glfwWindowShouldClose(window)) {
 			last = glfwGetTime();
-			
-			game.render(render);
+
 			game.update(delta);
+			game.render(render);
 			
 			glfwSwapBuffers(window);
 			glfwPollEvents();
