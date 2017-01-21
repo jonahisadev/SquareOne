@@ -34,6 +34,9 @@ public class Test extends CoreGame {
 			rect.translate(0, -20 * delta);
 		if (Window.isKeyDown(Keys.KEY_S))
 			rect.translate(0, 20 * delta);
+		
+		if (Window.isKeyDown(Keys.KEY_LEFT))
+			rect.rotate(10 * delta);
 	}
 
 	@Override

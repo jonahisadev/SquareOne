@@ -27,7 +27,15 @@ public class Render {
 	 * @see Rect   
 	 */
 	public void drawRect(Rect rect) {
+		glPushMatrix();
+		
+		glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
+		glRotatef(rect.getAngle(), 0, 0, 1);
+		glTranslatef(-(rect.getX() + (rect.getWidth() / 2)), -(rect.getY() + (rect.getHeight() / 2)), 0);
+		
 		drawMesh(rect.getMesh());
+		
+		glPopMatrix();
 	}
 
 	/**
