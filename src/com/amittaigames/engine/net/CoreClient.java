@@ -18,15 +18,27 @@ public abstract class CoreClient extends Thread {
 			this.port = port;
 			this.socket = new DatagramSocket();
 			this.start();
-			
+			this.onStart();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Called immediately after client thread has been started
+	 */
 	protected abstract void onStart();
+
+	/**
+	 * Called on packet receipt to handle the packet data
+	 * @param packet Datagram for IP and port
+	 * @param msg String message of packet
+	 */
 	protected abstract void handlePacket(DatagramPacket packet, String msg);
-	
+
+	/**
+	 * Waits for packet to be received
+	 */
 	@Override
 	public void run() {
 		while (running) {
@@ -41,7 +53,11 @@ public abstract class CoreClient extends Thread {
 			}
 		}
 	}
-	
+
+	/**
+	 * Sends packet to connected UDP socket
+	 * @param msg String message to send
+	 */
 	protected void sendPacket(String msg) {
 		try {
 			DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, ip, port);

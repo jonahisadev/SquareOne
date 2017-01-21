@@ -8,6 +8,8 @@ public class TexturedRect extends Renderable {
 	private float height;
 	private TexturedMesh mesh;
 	
+	private float angle;
+	
 	public TexturedRect(float x, float y, float width, float height, String path, boolean external) {
 		this.x = x;
 		this.y = y;
@@ -49,6 +51,14 @@ public class TexturedRect extends Renderable {
 		};
 		
 		mesh = new TexturedMesh(path, pos, color, coords, list, external);
+	}
+
+	/**
+	 * Rotates TexturedRect by a specified angle
+	 * @param angle Angle to increment by
+	 */
+	public void rotate(float angle) {
+		this.angle += angle;
 	}
 
 	/**
@@ -116,5 +126,13 @@ public class TexturedRect extends Renderable {
 
 	public TexturedMesh getMesh() {
 		return mesh;
+	}
+
+	public float getAngle() {
+		return angle;
+	}
+
+	public void setAngle(float angle) {
+		this.angle = angle;
 	}
 }

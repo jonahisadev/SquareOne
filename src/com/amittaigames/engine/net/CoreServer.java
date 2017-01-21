@@ -21,10 +21,22 @@ public abstract class CoreServer extends Thread{
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Called immediately after server thread has been started
+	 */
 	protected abstract void onStart();
+
+	/**
+	 * Called on packet receipt to handle the packet data
+	 * @param packet Datagram for IP and port
+	 * @param msg String message of packet
+	 */
 	protected abstract void handlePacket(DatagramPacket packet, String msg);
-	
+
+	/**
+	 * Waits for packet to be received
+	 */
 	@Override
 	public void run() {
 		while (running) {
@@ -39,7 +51,13 @@ public abstract class CoreServer extends Thread{
 			}
 		}
 	}
-	
+
+	/**
+	 * Sends packet to client UDP socket
+	 * @param ip IP to send packet to
+	 * @param port Port of client application   
+	 * @param msg String message to send   
+	 */
 	protected void sendPacket(InetAddress ip, int port, String msg) {
 		try {
 			DatagramPacket packet = new DatagramPacket(msg.getBytes(), msg.getBytes().length, ip, port);

@@ -44,7 +44,15 @@ public class Render {
 	 * @see TexturedRect    
 	 */
 	public void drawTexturedRect(TexturedRect rect) {
+		glPushMatrix();
+
+		glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
+		glRotatef(rect.getAngle(), 0, 0, 1);
+		glTranslatef(-(rect.getX() + (rect.getWidth() / 2)), -(rect.getY() + (rect.getHeight() / 2)), 0);
+		
 		drawTexturedMesh(rect.getMesh());
+		
+		glPopMatrix();
 	}
 
 	/**
