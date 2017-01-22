@@ -73,7 +73,7 @@ public class TexturedRect extends Renderable {
 		float[] pos = {
 			this.x, this.y,
 			this.x + this.width, this.y,
-			this.x + this.width, this.y + this.y,
+			this.x + this.width, this.y + this.height,
 			this.x, this.y + this.height
 		};
 		
