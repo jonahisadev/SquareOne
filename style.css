@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "GRAFIKA-TYPE.1";
+        src: url("GRAFIKA-TYPE.1.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-color: #0F5870;
+}
+
+h1 {
+    font-family: "GRAFIKA-TYPE.1", Tahoma, sans-serif;
+    font-size: 72pt;
+    color: #F0F0F0;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-position: inside;
+}
+
+.p-text {
+    color: #F0F0F0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+
+    margin-top: 50px;
+
+    width: 50%;
+    padding-left: 25%;
+}
+
+.l-text {
+    color: #F0F0F0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20pt;
+
+    margin-top: 50px;
+
+    width: 50%;
+    padding-left: 35%;
+}
+
+a {
+    font-family: Tahoma, Geneva, sans-serif;
+    text-decoration: none;
+}
+
+.button {
+    width: 100px;
+    height: 25px;
+    background: #F0F0F0;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    color: #0F5870;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 18pt;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.center {
+    text-align: center;
+}
