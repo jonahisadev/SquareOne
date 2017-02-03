@@ -1,8 +1,6 @@
 package com.amittaigames.engine.util;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class FileIO {
 
@@ -49,6 +47,92 @@ public class FileIO {
 		}
 		
 		return sb.toString();
+	}
+
+	/**
+	 * Read external binary file
+	 * @param path Path to file
+	 * @param bufSize Buffer size
+	 * @return Data buffer
+	 */
+	public static byte[] readExternalBinary(String path, int bufSize) {
+		byte[] buf = new byte[bufSize];
+		
+		try {
+			DataInputStream dis = new DataInputStream(new FileInputStream(path));
+			dis.readFully(buf);
+			dis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return buf;
+	}
+
+	/**
+	 * Read external binary file with buffer length at the start of the file
+	 * @param path Path to file
+	 * @return Data buffer
+	 */
+	public static byte[] readExternalBinaryWithLength(String path) {
+		byte[] buf = null;
+		
+		try {
+			DataInputStream dis = new DataInputStream(new FileInputStream(path));
+			buf = new byte[dis.readInt()];
+			dis.readFully(buf);
+			dis.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return buf;
+	}
+
+	/**
+	 * Write external file
+	 * @param path Path to file
+	 * @param buffer Data to write
+	 */
+	public static void writeExternalFile(String path, String buffer) {
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(path));
+			bw.write(buffer);
+			bw.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Write external binary file
+	 * @param path Path to file
+	 * @param data Data buffer
+	 */
+	public static void writeExternalBinary(String path, byte[] data) {
+		try {
+			DataOutputStream dos = new DataOutputStream(new FileOutputStream(path));
+			dos.write(data);
+			dos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Write external binary file with buffer length at the start of the file
+	 * @param path Path to file
+	 * @param data Data buffer
+	 */
+	public static void writeExternalBinaryWithLength(String path, byte[] data) {
+		try {
+			DataOutputStream dos = new DataOutputStream(new FileOutputStream(path));
+			dos.writeByte(data.length);
+			dos.write(data);
+			dos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
