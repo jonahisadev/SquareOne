@@ -127,7 +127,7 @@ public class FileIO {
 	public static void writeExternalBinaryWithLength(String path, byte[] data) {
 		try {
 			DataOutputStream dos = new DataOutputStream(new FileOutputStream(path));
-			dos.writeByte(data.length);
+			dos.writeInt(data.length);
 			dos.write(data);
 			dos.close();
 		} catch (Exception e) {
