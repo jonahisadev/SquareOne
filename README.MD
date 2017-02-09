@@ -22,6 +22,7 @@ was a good learning experience, and I can make games now.
 * Font loading (.fnt/.bmp)
 * Text rendering
 * Networking
+* WAV loading/playback
 
 ### Other notes
 

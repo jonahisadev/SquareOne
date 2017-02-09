@@ -2,6 +2,7 @@ package com.amittaigames.engine.util;
 
 import org.lwjgl.BufferUtils;
 
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 
@@ -25,6 +26,17 @@ public class Buffers {
 	 */
 	public static IntBuffer createIntBuffer(int[] data) {
 		IntBuffer buf = BufferUtils.createIntBuffer(data.length);
+		buf.put(data).flip();
+		return buf;
+	}
+
+	/**
+	 * Creates an ByteBuffer for use by OpenGL
+	 * @param data The byte array to be converted
+	 * @return ByteBuffer for OpenGL
+	 */
+	public static ByteBuffer createByteBuffer(byte[] data) {
+		ByteBuffer buf = BufferUtils.createByteBuffer(data.length);
 		buf.put(data).flip();
 		return buf;
 	}

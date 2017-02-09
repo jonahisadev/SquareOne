@@ -1,6 +1,7 @@
 package com.amittaigames.engine.graphics;
 
 import com.amittaigames.engine.CoreGame;
+import com.amittaigames.engine.audio.AudioPlayer;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
@@ -51,6 +52,8 @@ public class Window {
 		Window.game = game;
 		Window.render = new Render();
 		
+		AudioPlayer.init();
+		
 		start();
 	}
 
@@ -71,6 +74,9 @@ public class Window {
 			game.update(delta);
 			game.render(render);
 			
+			if (AudioPlayer.isInitialized())
+				AudioPlayer.runAudioLoop();
+			
 			glfwSwapBuffers(window);
 			glfwPollEvents();
 			
@@ -79,6 +85,7 @@ public class Window {
 		}
 		
 		game.cleanUp();
+		AudioPlayer.destroy();
 		
 		glfwDestroyWindow(window);
 		glfwTerminate();
