@@ -10,11 +10,18 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
 
+	// Window related items
 	private static long window;
 	
+	// Classes to be used in the game loop
 	private static CoreGame game;
 	private static Render render;
 
+	// FPS garbage
+	private static long lastFPS;
+	private static int LAST = 0;
+	private static int FPS;
+	
 	/**
 	 * Create window and OpenGL context
 	 * @param title Window title
@@ -91,6 +98,30 @@ public class Window {
 		glfwTerminate();
 		
 		System.exit(0);
+	}
+
+	/**
+	 * Set window title
+	 * @param title Title of window
+	 */
+	public static void setTitle(String title) {
+		glfwSetWindowTitle(window, title);
+	}
+
+	/**
+	 * Get current frames per second being rendered on screen
+	 * @return FPS on screen
+	 */
+	public static int getCurrentFPS() {
+		int ret = LAST;
+		if (glfwGetTime() * 1000 - lastFPS > 1000) {
+			ret = FPS;
+			LAST = FPS;
+			FPS = 0;
+			lastFPS += 1000;
+		}
+		FPS++;
+		return ret;
 	}
 
 	/**

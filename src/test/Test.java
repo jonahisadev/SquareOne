@@ -21,7 +21,7 @@ public class Test extends CoreGame {
 		Sound test = new Sound("/Users/batman/Music/MLG.wav", true);
 		test.logWAVInfo();
 		
-		AudioPlayer.playSound(test, 75);
+		//AudioPlayer.playSound(test, 75);
 	}
 
 	@Override
@@ -43,6 +43,8 @@ public class Test extends CoreGame {
 		
 		if (Window.isKeyDown(Keys.KEY_LEFT))
 			rect.rotate(10 * delta);
+		
+		Window.setTitle("Test - FPS: " + Window.getCurrentFPS());
 	}
 
 	@Override
