@@ -9,6 +9,7 @@ public class Rect extends Renderable {
 	private Mesh mesh;
 	
 	private float angle;
+	private float scale = 1f;
 	
 	public Rect(float x, float y, float width, float height) {
 		this.x = x;
@@ -93,6 +94,14 @@ public class Rect extends Renderable {
 	}
 
 	/**
+	 * Scale the Rect
+	 * @param scale Scale factor
+	 */
+	public void scale(float scale) {
+		this.scale += scale;
+	}
+
+	/**
 	 * Call mesh deletion
 	 */
 	public void delete() {
@@ -125,5 +134,9 @@ public class Rect extends Renderable {
 
 	public void setAngle(float angle) {
 		this.angle = angle;
+	}
+
+	public float getScale() {
+		return scale;
 	}
 }

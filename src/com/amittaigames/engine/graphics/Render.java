@@ -28,6 +28,8 @@ public class Render {
 	 */
 	public void drawRect(Rect rect) {
 		glPushMatrix();
+
+		glScalef(rect.getScale(), rect.getScale(), 1);
 		
 		glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
 		glRotatef(rect.getAngle(), 0, 0, 1);
@@ -46,6 +48,8 @@ public class Render {
 	public void drawTexturedRect(TexturedRect rect) {
 		glPushMatrix();
 
+		glScalef(rect.getScale(), rect.getScale(), 1);
+		
 		glTranslatef(rect.getX() + (rect.getWidth() / 2), rect.getY() + (rect.getHeight() / 2), 0);
 		glRotatef(rect.getAngle(), 0, 0, 1);
 		glTranslatef(-(rect.getX() + (rect.getWidth() / 2)), -(rect.getY() + (rect.getHeight() / 2)), 0);

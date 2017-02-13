@@ -9,6 +9,7 @@ public class TexturedRect extends Renderable {
 	private TexturedMesh mesh;
 	
 	private float angle;
+	private float scale;
 	
 	public TexturedRect(float x, float y, float width, float height, String path, boolean external) {
 		this.x = x;
@@ -102,6 +103,14 @@ public class TexturedRect extends Renderable {
 	}
 
 	/**
+	 * Scale the texture
+	 * @param scale Scale factor
+	 */
+	public void scale(float scale) {
+		this.scale += scale;
+	}
+
+	/**
 	 * Call mesh deletion
 	 */
 	public void delete() {
@@ -135,4 +144,9 @@ public class TexturedRect extends Renderable {
 	public void setAngle(float angle) {
 		this.angle = angle;
 	}
+
+	public float getScale() {
+		return scale;
+	}
+	
 }
