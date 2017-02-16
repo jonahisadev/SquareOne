@@ -26,6 +26,9 @@ public class TexturedMesh extends Renderable {
 	private int vList;
 	private int vCount;
 	
+	private int imgWidth;
+	private int imgHeight;
+	
 	private boolean external;
 
 	public TexturedMesh(String path, float[] pos, float[] color, float[] coords, int[] list, boolean external) {
@@ -67,11 +70,14 @@ public class TexturedMesh extends Renderable {
 				img = ImageIO.read(this.getClass().getResourceAsStream(path));
 			
 			
-			int[] pixels = new int[img.getWidth() * img.getHeight()];
-			img.getRGB(0, 0, img.getWidth(), img.getHeight(), pixels, 0, img.getWidth());
+			this.imgWidth = img.getWidth();
+			this.imgHeight = img.getHeight();
 			
-			int[] data = new int[img.getWidth() * img.getHeight()];
-			for (int i = 0; i < img.getWidth() * img.getHeight(); i++) {
+			int[] pixels = new int[imgWidth * imgHeight];
+			img.getRGB(0, 0, imgWidth, imgHeight, pixels, 0, imgWidth);
+			
+			int[] data = new int[imgWidth * imgHeight];
+			for (int i = 0; i < imgWidth * imgHeight; i++) {
 				int a = (pixels[i] & 0xFF000000) >> 24;
 				int r = (pixels[i] & 0xFF0000) >> 16;
 				int g = (pixels[i] & 0xFF00) >> 8;
@@ -158,6 +164,14 @@ public class TexturedMesh extends Renderable {
 
 	public int getCount() {
 		return vCount;
+	}
+	
+	public int getImageWidth() {
+		return imgWidth;
+	}
+	
+	public int getImageHeight() {
+		return imgHeight;
 	}
 	
 }

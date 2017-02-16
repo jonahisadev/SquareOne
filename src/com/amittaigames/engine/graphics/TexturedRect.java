@@ -101,6 +101,32 @@ public class TexturedRect extends Renderable {
 		
 		mesh.updateColor(color);
 	}
+	
+	/**
+	 * Set UV coordinates to a portion of the full image
+	 * @param xoff X offset coordinate on image
+	 * @param yoff Y offset coordinate on image
+	 * @param dwidth Width offset coordinate on image
+	 * @param dheight Height offset coordinate on image
+	 */
+	public void subImage(int xoff, int yoff, int dwidth, int dheight) {
+		int imgWidth = mesh.getImageWidth();
+		int imgHeight = mesh.getImageHeight();
+		
+		float x = (float)xoff/(float)imgWidth;
+		float y = (float)yoff/(float)imgHeight;
+		float w = (float)dwidth/(float)imgWidth;
+		float h = (float)dheight/(float)imgHeight;
+		
+		float[] uv = {
+			x, y,
+			x + w, y,
+			x + w, y + h,
+			x, y + h
+		};
+		
+		mesh.updateCoords(uv);
+	}
 
 	/**
 	 * Scale the texture
