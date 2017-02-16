@@ -63,7 +63,7 @@ public class TexturedMesh extends Renderable {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		
 		try {
-			BufferedImage img = null;
+			BufferedImage img;
 			if (external)
 				img = ImageIO.read(new BufferedInputStream(new FileInputStream(path)));
 			else
@@ -72,25 +72,25 @@ public class TexturedMesh extends Renderable {
 			
 			this.imgWidth = img.getWidth();
 			this.imgHeight = img.getHeight();
-			
-			int[] pixels = new int[imgWidth * imgHeight];
-			img.getRGB(0, 0, imgWidth, imgHeight, pixels, 0, imgWidth);
-			
-			int[] data = new int[imgWidth * imgHeight];
-			for (int i = 0; i < imgWidth * imgHeight; i++) {
+
+			int[] pixels = new int[img.getWidth() * img.getHeight()];
+			img.getRGB(0, 0, img.getWidth(), img.getHeight(), pixels, 0, img.getWidth());
+
+			int[] data = new int[img.getWidth() * img.getHeight()];
+			for (int i = 0; i < img.getWidth() * img.getHeight(); i++) {
 				int a = (pixels[i] & 0xFF000000) >> 24;
 				int r = (pixels[i] & 0xFF0000) >> 16;
 				int g = (pixels[i] & 0xFF00) >> 8;
 				int b = (pixels[i] & 0xFF) >> 0;
-				
+
 				data[i] = a << 24 | b << 16 | g << 8 | r;
 			}
-			
+
 			vTexture = glGenTextures();
 			glBindTexture(GL_TEXTURE_2D, vTexture);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.getWidth(), img.getHeight(), 0, 
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.getWidth(), img.getHeight(), 0,
 					GL_RGBA, GL_UNSIGNED_BYTE, Buffers.createIntBuffer(data));
 			glBindTexture(GL_TEXTURE_2D, 0);
 		} catch (Exception e) {

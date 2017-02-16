@@ -70,4 +70,12 @@ public class Sound {
 	public boolean isLoop() {
 		return loop;
 	}
+
+	public int getSource() {
+		return source;
+	}
+
+	public void setSource(int source) {
+		this.source = source;
+	}
 }

@@ -49,11 +49,11 @@ public class AudioPlayer {
 	public static void runAudioLoop() {
 		Iterator<Sound> soundi = sounds.iterator();
 		while (soundi.hasNext()) {
-			int sound = soundi.next();
-			if (alGetSourcei(sound.source, AL_SOURCE_STATE) == AL_STOPPED) {
-				alDeleteSources(sound.source);
+			Sound sound = soundi.next();
+			if (alGetSourcei(sound.getSource(), AL_SOURCE_STATE) == AL_STOPPED) {
+				alDeleteSources(sound.getSource());
 				sound.delete();
-				sound.remove();
+				soundi.remove();
 			}
 		}
 	}
@@ -65,17 +65,17 @@ public class AudioPlayer {
 	 * @return Index in sound list to sound
 	 */
 	public static int playSound(Sound sound, int volume) {
-		sound.source = alGenSources();
+		sound.setSource(alGenSources());
 		
 		//sources.add(source);
 		int listi = sounds.size();
 		sounds.add(sound);
 		
-		alSourcef(sound.source, AL_PITCH, 1);
-		alSourcef(sound.source, AL_GAIN, (float)volume/100f);
-		if (sound.isLoop()) alSourcef(sound.source, AL_LOOPING, AL_TRUE);
-		alSourcei(sound.source, AL_BUFFER, sound.getBuffer());
-		alSourcePlay(sound.source);
+		alSourcef(sound.getSource(), AL_PITCH, 1);
+		alSourcef(sound.getSource(), AL_GAIN, (float)volume/100f);
+		if (sound.isLoop()) alSourcef(sound.getSource(), AL_LOOPING, AL_TRUE);
+		alSourcei(sound.getSource(), AL_BUFFER, sound.getBuffer());
+		alSourcePlay(sound.getSource());
 		
 		return listi;
 	}
@@ -85,7 +85,7 @@ public class AudioPlayer {
 	 * @param sound Sound to be stopped
 	 */
 	public static void pauseSound(Sound sound) {
-		alSourcePause(sound.source);
+		alSourcePause(sound.getSource());
 	}
 	
 	/**
@@ -94,9 +94,9 @@ public class AudioPlayer {
 	 * @param volume Volume to set sound's volume to
 	 */
 	public static void setSoundVolume(Sound sound, int volume) {
-		alSourcef(sound.source, AL_GAIN, (float)volume/100f;
-		alSourcePause(sound.source);
-		alSourcePlay(sound.source);
+		alSourcef(sound.getSource(), AL_GAIN, (float)volume/100f);
+		alSourcePause(sound.getSource());
+		alSourcePlay(sound.getSource());
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class AudioPlayer {
 	 * @param sound Sound to be stopped
 	 */
 	public static void stopSound(Sound sound) {
-		alSourceStop(sound);
+		alSourceStop(sound.getSource());
 	}
 
 	/**
