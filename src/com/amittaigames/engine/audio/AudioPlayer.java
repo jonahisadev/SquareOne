@@ -18,7 +18,7 @@ public class AudioPlayer {
 	
 	private static boolean initialized = false;
 	
-	private static List<Integer> sources = new ArrayList<>();
+	//private static List<Integer> sources = new ArrayList<>();
 	private static List<Sound> sounds = new ArrayList<>();
 
 	/**
@@ -47,12 +47,13 @@ public class AudioPlayer {
 	 * Run playing audio checks. Do NOT call this! It is called in the main loop
 	 */
 	public static void runAudioLoop() {
-		Iterator<Integer> sourcei = sources.iterator();
-		while (sourcei.hasNext()) {
-			int source = sourcei.next();
-			if (alGetSourcei(source, AL_SOURCE_STATE) == AL_STOPPED) {
-				alDeleteSources(source);
-				sourcei.remove();
+		Iterator<Sound> soundi = sounds.iterator();
+		while (soundi.hasNext()) {
+			int sound = soundi.next();
+			if (alGetSourcei(sound.source, AL_SOURCE_STATE) == AL_STOPPED) {
+				alDeleteSources(sound.source);
+				sound.delete();
+				sound.remove();
 			}
 		}
 	}
@@ -61,18 +62,49 @@ public class AudioPlayer {
 	 * Play a sound
 	 * @param sound Sound object with data
 	 * @param volume Volume (0-100) to play sound at
+	 * @return Index in sound list to sound
 	 */
-	public static void playSound(Sound sound, int volume) {
-		int source = alGenSources();
+	public static int playSound(Sound sound, int volume) {
+		sound.source = alGenSources();
 		
-		sources.add(source);
+		//sources.add(source);
+		int listi = sounds.size();
 		sounds.add(sound);
 		
-		alSourcef(source, AL_PITCH, 1);
-		alSourcef(source, AL_GAIN, (float)volume/100f);
-		if (sound.isLoop()) alSourcef(source, AL_LOOPING, AL_TRUE);
-		alSourcei(source, AL_BUFFER, sound.getBuffer());
-		alSourcePlay(source);
+		alSourcef(sound.source, AL_PITCH, 1);
+		alSourcef(sound.source, AL_GAIN, (float)volume/100f);
+		if (sound.isLoop()) alSourcef(sound.source, AL_LOOPING, AL_TRUE);
+		alSourcei(sound.source, AL_BUFFER, sound.getBuffer());
+		alSourcePlay(sound.source);
+		
+		return listi;
+	}
+
+	/**
+	 * Pause a sound
+	 * @param sound Sound to be stopped
+	 */
+	public static void pauseSound(Sound sound) {
+		alSourcePause(sound.source);
+	}
+	
+	/**
+	 * Set a sound's volume
+	 * @param sound Sound's volume to be set
+	 * @param volume Volume to set sound's volume to
+	 */
+	public static void setSoundVolume(Sound sound, int volume) {
+		alSourcef(sound.source, AL_GAIN, (float)volume/100f;
+		alSourcePause(sound.source);
+		alSourcePlay(sound.source);
+	}
+	
+	/**
+	 * Stop a sound
+	 * @param sound Sound to be stopped
+	 */
+	public static void stopSound(Sound sound) {
+		alSourceStop(sound);
 	}
 
 	/**

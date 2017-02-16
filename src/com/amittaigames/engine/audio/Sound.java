@@ -11,6 +11,7 @@ public class Sound {
 	private int vbo;
 	private WaveData waveData;
 	private boolean loop = false;
+	private int source;
 	
 	public Sound(String path, boolean external) {
 		byte[] fileData = FileIO.readExternalBinary(path, (int)new File(path).length());
@@ -36,6 +37,14 @@ public class Sound {
 		System.out.println("Samples: " + waveData.getSamples());
 		System.out.println("Sample Rate: " + waveData.getSampleRate() + " Hz");
 		System.out.println("Raw Sound Size (bytes): " + waveData.getSize());
+	}
+	
+	/**
+	 * Free OpenAL buffers
+	 */
+	public void delete() {
+		alDeleteSources(source);
+		alDeleteBuffers(vbo);
 	}
 
 	/**
