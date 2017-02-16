@@ -27,15 +27,17 @@ public class Window {
 	 * @param title Window title
 	 * @param width Window width
 	 * @param height Window height
+	 * @param resizable Should the window be resizable
 	 * @param game CoreGame instance
 	 */
-	public static void init(String title, int width, int height, CoreGame game) {
+	public static void init(String title, int width, int height, boolean resizable, CoreGame game) {
 		if (!glfwInit()) {
 			System.err.println("Could not initialize window system!");
 			System.exit(1);
 		}
 		
-		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+		if (!resizable)
+			glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 		
 		window = glfwCreateWindow(width, height, title, 0, 0);
 		if (window == 0) {
