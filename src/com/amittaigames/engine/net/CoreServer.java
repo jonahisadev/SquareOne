@@ -11,6 +11,9 @@ public abstract class CoreServer extends Thread{
 	
 	protected boolean running = true;
 	
+	/**
+	 * @param Port to start the server on
+	 */
 	public CoreServer(int port) {
 		try {
 			this.port = port;

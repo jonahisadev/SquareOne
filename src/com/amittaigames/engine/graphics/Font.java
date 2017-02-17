@@ -29,6 +29,9 @@ public class Font {
 		public float yoff;
 		public float xadv;
 		
+		/**
+		 * Character information for font renderer
+		 */
 		public FontData(float x, float y, float width, float height,
 						float xoff, float yoff, float xadv) {
 			this.x = x;
@@ -57,6 +60,14 @@ public class Font {
 	
 	private static Map<String, Font> loaded = new HashMap<>();
 	
+	/**
+	 * @param data Data for renderable characters
+	 * @param vTexture Font map buffer pointer for OpenGL
+	 * @param id ID for getting font from list
+	 * @param imgw Image width
+	 * @param scale Scale to render the font at
+	 * @param base Base line to render text at
+	 */
 	public Font(FontData[] data, int vTexture, int id, int imgw, float scale, float base) {
 		this.data = data;
 		this.vTexture = vTexture;

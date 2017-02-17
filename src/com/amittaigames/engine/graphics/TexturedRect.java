@@ -11,6 +11,14 @@ public class TexturedRect extends Renderable {
 	private float angle;
 	private float scale = 1f;
 	
+	/**
+	 * @param x X position for the texture
+	 * @param y Y position for the texture
+	 * @param width Width for the texture to be rendered at
+	 * @param height Height for the texture to be rendered at
+	 * @param path Path to texture
+	 * @param external Is the texture external to the JAR file or not?
+	 */
 	public TexturedRect(float x, float y, float width, float height, String path, boolean external) {
 		this.x = x;
 		this.y = y;

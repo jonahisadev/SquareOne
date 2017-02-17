@@ -12,6 +12,10 @@ public abstract class CoreClient extends Thread {
 	
 	protected boolean running = true;
 	
+	/**
+	 * @param addr IP address to connect to
+	 * @param port Port to connect to
+	 */
 	public CoreClient(String addr, int port) {
 		try {
 			this.ip = InetAddress.getByName(addr);

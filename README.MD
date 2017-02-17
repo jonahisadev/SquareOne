@@ -24,6 +24,12 @@ was a good learning experience, and I can make games now.
 * Networking
 * WAV loading/playback
 
+### To Do
+
+* Spritesheets
+* OGG support
+* TCP support
+
 ### Other notes
 
 I will be updating this if I notice any bugs in the process

@@ -11,6 +11,12 @@ public class Rect extends Renderable {
 	private float angle;
 	private float scale = 1f;
 	
+	/**
+	 * @param x X position for rectangle
+	 * @param y Y position for rectangle
+	 * @param width Width of rectangle
+	 * @param height Height of rectangle
+	 */
 	public Rect(float x, float y, float width, float height) {
 		this.x = x;
 		this.y = y;

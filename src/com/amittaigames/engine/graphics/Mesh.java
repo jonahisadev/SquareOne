@@ -19,6 +19,11 @@ public class Mesh extends Renderable {
 	private int vColor;
 	private int vList;
 	
+	/**
+	 * @param pos Position vertices
+	 * @param color Color vertices
+	 * @param list Element array vertices
+	 */
 	public Mesh(float[] pos, float[] color, int[] list) {
 		this.pos = pos;
 		this.color = color;

@@ -16,6 +16,9 @@ public class WaveData {
 	
 	private ByteBuffer data;
 	
+	/**
+	 * @param fileData Raw bytes from WAV file
+	 */
 	public WaveData(byte[] fileData) {
 		if (fileData[0] != (byte)'R' ||
 				fileData[1] != (byte)'I' ||

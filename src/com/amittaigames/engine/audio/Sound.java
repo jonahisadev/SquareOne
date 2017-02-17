@@ -13,6 +13,10 @@ public class Sound {
 	private boolean loop = false;
 	private int source;
 	
+	/**
+	 * @param path Path to WAV file
+	 * @parm external Is the file external to the JAR file or not?
+	 */
 	public Sound(String path, boolean external) {
 		byte[] fileData = FileIO.readExternalBinary(path, (int)new File(path).length());
 		waveData = new WaveData(fileData);

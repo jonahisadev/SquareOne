@@ -31,6 +31,14 @@ public class TexturedMesh extends Renderable {
 	
 	private boolean external;
 
+	/**
+	 * @param path Path to texture
+	 * @param pos Position vertices
+	 * @param color Color vertices
+	 * @param coords UV coordinate vertices
+	 * @param list Element array vertices
+	 * @param external Is the texture external to the JAR file or not?
+	 */
 	public TexturedMesh(String path, float[] pos, float[] color, float[] coords, int[] list, boolean external) {
 		this.pos = pos;
 		this.color = color;
