@@ -8,7 +8,7 @@ import com.amittaigames.engine.util.Keys;
 
 public class Test extends CoreGame {
 
-	private TexturedRect rect;
+	private Rect rect;
 	
 	public static void main(String[] args) {
 		Window.init("Test", 800, 600, false, new Test());
@@ -16,7 +16,8 @@ public class Test extends CoreGame {
 	
 	@Override
 	public void init() {
-		rect = new TexturedRect(100, 100, 100, 100, "/images/test.png", false);
+		rect = new Rect(100, 100, 100, 100);
+		
 		Sound test = new Sound("/Users/batman/Music/MLG.wav", true);
 		test.logWAVInfo();
 		
@@ -25,8 +26,8 @@ public class Test extends CoreGame {
 
 	@Override
 	public void render(Render r) {
-		r.clear(0, 255, 255);
-		r.drawTexturedRect(rect);
+		r.clear(0, 255, 128);
+		r.drawRect(rect);
 	}
 
 	@Override

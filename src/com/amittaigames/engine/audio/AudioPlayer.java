@@ -18,7 +18,6 @@ public class AudioPlayer {
 	
 	private static boolean initialized = false;
 	
-	//private static List<Integer> sources = new ArrayList<>();
 	private static List<Sound> sounds = new ArrayList<>();
 
 	/**
@@ -67,7 +66,6 @@ public class AudioPlayer {
 	public static int playSound(Sound sound, int volume) {
 		sound.setSource(alGenSources());
 		
-		//sources.add(source);
 		int listi = sounds.size();
 		sounds.add(sound);
 		
@@ -86,6 +84,14 @@ public class AudioPlayer {
 	 */
 	public static void pauseSound(Sound sound) {
 		alSourcePause(sound.getSource());
+	}
+
+	/**
+	 * Resume a paused sound
+	 * @param sound Sound to be resumed
+	 */
+	public static void resumeSound(Sound sound) {
+		alSourcePlay(sound.getSource());
 	}
 	
 	/**
@@ -127,6 +133,10 @@ public class AudioPlayer {
 	 */
 	public static boolean isInitialized() {
 		return initialized;
+	}
+	
+	public static Sound getSoundFromList(int list) {
+		return sounds.get(list);
 	}
 
 }

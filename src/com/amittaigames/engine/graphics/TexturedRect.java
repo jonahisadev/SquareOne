@@ -9,7 +9,7 @@ public class TexturedRect extends Renderable {
 	private TexturedMesh mesh;
 	
 	private float angle;
-	private float scale;
+	private float scale = 1f;
 	
 	public TexturedRect(float x, float y, float width, float height, String path, boolean external) {
 		this.x = x;
