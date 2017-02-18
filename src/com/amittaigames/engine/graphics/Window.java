@@ -147,4 +147,41 @@ public class Window {
 			return false;
 	}
 
+	/**
+	 * Get mouse X position on game window
+	 * @return X position
+	 */
+	public static float getMouseX() {
+		return (float)getMousePos()[0];
+	}
+
+	/**
+	 * Get mouse Y position on game window
+	 * @return Y position
+	 */
+	public static float getMouseY() {
+		return (float)getMousePos()[1];
+	}
+
+	/**
+	 * Check if mouse is being pressed
+	 * @param button Which button to press
+	 * @return Is the button down?
+	 */
+	public static boolean isMousePressed(int button) {
+		return (glfwGetMouseButton(window, button) == GLFW_PRESS);
+	}
+	
+	private static double[] getMousePos() {
+		double[] x = new double[1];
+		double[] y = new double[1];
+		double[] ret = new double[2];
+		
+		glfwGetCursorPos(window, x, y);
+		ret[0] = x[0];
+		ret[1] = y[0];
+		
+		return ret;
+	}
+
 }
