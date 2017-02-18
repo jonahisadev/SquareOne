@@ -120,7 +120,15 @@ public class Render {
 	
 	public void drawSprites(SpriteSheet ss) {
 		for (Sprite sprite : ss.getSpriteList()) {
+			glPushMatrix();
+
+			glTranslatef(sprite.getX() + (sprite.getWidth() / 2), sprite.getY() + (sprite.getHeight() / 2), 0);
+			glRotatef(sprite.getAngle(), 0, 0, 1);
+			glTranslatef(-(sprite.getX() + (sprite.getWidth() / 2)), -(sprite.getY() + (sprite.getHeight() / 2)), 0);
+			
 			drawTexturedMesh(sprite);
+			
+			glPopMatrix();
 		}
 	}
 

@@ -6,7 +6,7 @@ import com.amittaigames.engine.util.Keys;
 
 public class Test extends CoreGame {
 
-	private TexturedRect rect;
+	private Rect rect;
 	private SpriteSheet ss;
 	private boolean pressed = false;
 	private int cycle = 0;
@@ -17,7 +17,7 @@ public class Test extends CoreGame {
 	
 	@Override
 	public void init() {
-		rect = new TexturedRect(100, 100, 100, 100, "/textures/NewLogo512.png", false);
+		rect = new Rect(100, 100, 100, 100);
 		
 		ss = new SpriteSheet("/textures/spritesheet.png", 16, 16, 0, false);
 		ss.createSprite(100, 100, 128, 128, 2, 1);
@@ -65,6 +65,7 @@ public class Test extends CoreGame {
 		}
 		
 		ss.getSpriteByIndex(0).translate(10 * delta, 0);
+		ss.getSpriteByIndex(0).rotate(5 * delta);
 		
 		Window.setTitle("Test - FPS: " + Window.getCurrentFPS());
 	}

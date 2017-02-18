@@ -11,6 +11,8 @@ public class Sprite extends TexturedMesh {
 	private float width;
 	private float height;
 	
+	private float angle;
+	
 	public Sprite(float[] pos, float[] color, float[] coords, int[] list, int tex, SpriteSheet parent) {
 		super("", pos, color, coords, list, false, tex);
 		this.parent = parent;
@@ -38,5 +40,28 @@ public class Sprite extends TexturedMesh {
 		
 		updatePosition(pos);
 	}
+	
+	public void rotate(float angle) {
+		this.angle += angle;
+	}
 
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public float getAngle() {
+		return angle;
+	}
 }
