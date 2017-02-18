@@ -14,6 +14,7 @@ was a good learning experience, and I can make games now.
 ### What do I need?
 
 * LWJGL 3.1
+* Java 1.8.0_60
 
 ### Features
 
