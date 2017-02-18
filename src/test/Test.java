@@ -1,14 +1,15 @@
 package test;
 
 import com.amittaigames.engine.*;
-import com.amittaigames.engine.audio.AudioPlayer;
-import com.amittaigames.engine.audio.Sound;
 import com.amittaigames.engine.graphics.*;
 import com.amittaigames.engine.util.Keys;
 
 public class Test extends CoreGame {
 
-	private Rect rect;
+	private TexturedRect rect;
+	private SpriteSheet ss;
+	private boolean pressed = false;
+	private int cycle = 0;
 	
 	public static void main(String[] args) {
 		Window.init("Test", 800, 600, false, new Test());
@@ -16,18 +17,23 @@ public class Test extends CoreGame {
 	
 	@Override
 	public void init() {
-		rect = new Rect(100, 100, 100, 100);
+		rect = new TexturedRect(100, 100, 100, 100, "/textures/NewLogo512.png", false);
 		
-		Sound test = new Sound("/Users/batman/Music/MLG.wav", true);
-		test.logWAVInfo();
+		ss = new SpriteSheet("/textures/spritesheet.png", 16, 16, 0, false);
+		ss.createSprite(100, 100, 128, 128, 2, 1);
 		
-		//AudioPlayer.playSound(test, 75);
+		//Sound test = new Sound("/Users/batman/Music/MLG.wav", true);
+		//test.logWAVInfo();
+		
+		//AudioPlayer.playSound(test, 100);
 	}
 
 	@Override
 	public void render(Render r) {
 		r.clear(0, 255, 128);
-		r.drawRect(rect);
+		//r.drawTexturedRect(rect);
+		
+		r.drawSprites(ss);
 	}
 
 	@Override
@@ -43,6 +49,22 @@ public class Test extends CoreGame {
 		
 		if (Window.isKeyDown(Keys.KEY_LEFT))
 			rect.rotate(10 * delta);
+		
+		if (Window.isKeyDown(Keys.KEY_SPACE)) {
+			if (!pressed) {
+				if (cycle == 3)
+					cycle = 0;
+				else
+					cycle++;
+				
+				ss.getSpriteByIndex(0).setImageLocation(cycle, 1);
+				pressed = true;
+			}
+		} else {
+			pressed = false;
+		}
+		
+		ss.getSpriteByIndex(0).translate(10 * delta, 0);
 		
 		Window.setTitle("Test - FPS: " + Window.getCurrentFPS());
 	}

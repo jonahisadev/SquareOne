@@ -24,10 +24,11 @@ was a good learning experience, and I can make games now.
 * Text rendering
 * Networking
 * WAV loading/playback
+* Spritesheets (partial support as of now)
 
 ### To Do
 
-* Spritesheets
+* Add more tests
 * OGG support
 * TCP support
 

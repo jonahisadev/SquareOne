@@ -117,9 +117,15 @@ public class Render {
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisableClientState(GL_COLOR_ARRAY);
 	}
+	
+	public void drawSprites(SpriteSheet ss) {
+		for (Sprite sprite : ss.getSpriteList()) {
+			drawTexturedMesh(sprite);
+		}
+	}
 
 	/**
-	 * Draw a string
+	 * Draw a string (this is so cool btw)
 	 * @param str String to render
 	 * @param x X component (leftmost)
 	 * @param y Y component (topmost)
