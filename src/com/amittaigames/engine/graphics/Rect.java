@@ -71,6 +71,25 @@ public class Rect extends Renderable {
 	}
 
 	/**
+	 * Directly set position of rectangle
+	 * @param x X position
+	 * @param y Y position
+	 */
+	public void setPosition(float x, float y) {
+		this.x = x;
+		this.y = y;
+
+		float[] pos = {
+				this.x, this.y,
+				this.x + this.width, this.y,
+				this.x + this.width, this.y + this.height,
+				this.x, this.y + this.height
+		};
+
+		mesh.updatePosition(pos);
+	}
+
+	/**
 	 * Rotate the Rect around its center
 	 * @param angle Angle to increment by
 	 */

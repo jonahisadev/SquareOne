@@ -164,6 +164,17 @@ public class Window {
 	}
 
 	/**
+	 * Hide or show cursor when inside game window
+	 * @param hidden Is cursor hidden?
+	 */
+	public static void setCursorHidden(boolean hidden) {
+		if (hidden)
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		else
+			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+
+	/**
 	 * Check if mouse is being pressed
 	 * @param button Which button to press
 	 * @return Is the button down?

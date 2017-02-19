@@ -90,6 +90,25 @@ public class TexturedRect extends Renderable {
 	}
 
 	/**
+	 * Directly set position of texture
+	 * @param x X position
+	 * @param y Y position
+	 */
+	public void setPosition(float x, float y) {
+		this.x = x;
+		this.y = y;
+		
+		float[] pos = {
+				this.x, this.y,
+				this.x + this.width, this.y,
+				this.x + this.width, this.y + this.height,
+				this.x, this.y + this.height
+		};
+
+		mesh.updatePosition(pos);
+	}
+
+	/**
 	 * Set the color of the texture
 	 * @param r Red component
 	 * @param g Green component
