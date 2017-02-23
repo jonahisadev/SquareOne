@@ -15,6 +15,22 @@ was a good learning experience, and I can make games now.
 
 * LWJGL 3.1
 * Java 1.8.0_60
+* Creating compatible fonts may require [Hiero](https://libgdx.badlogicgames.com/tools.html)
+
+### Philosophy
+
+As I've been touching up this engine for a while after
+its creation (12/28/16), I've had to consider the addition
+of certain features. Some features may not be great to add
+to the engine, because that might only be the way I do it,
+and not the way someone else does it. At the moment, the engine
+does not have the capabilites to implement multiples ways for doing
+something specific. For now, it functions as a head start, while
+still providing a few utilities one might not want to make themselves.
+As such, some features are still being added and worked on,
+but some features should be created by the programmer. I hope
+to continue constructing the engine to provide the tools to do
+that effectively.
 
 ### Features
 
