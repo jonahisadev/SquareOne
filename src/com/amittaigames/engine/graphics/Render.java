@@ -20,6 +20,17 @@ public class Render {
 		glClearColor((float)r/255.0f, (float)g/255.0f, (float)b/255.0f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
+	
+	/**
+	 * Set line render mode
+	 * @param lines Should render draw lines or fill?
+	 */
+	public void setLineMode(boolean lines) {
+		if (lines)
+			glPolygonMode(GL_FRONT, GL_LINE);
+		else
+			glPolygonMode(GL_FRONT, GL_FILL);
+	}
 
 	/**
 	 * Wrapper for mesh drawing
