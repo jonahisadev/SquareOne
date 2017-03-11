@@ -34,7 +34,10 @@ public class SpriteSheet {
 		
 		init();
 	}
-	
+
+	/**
+	 * Initialize the spritesheet
+	 */
 	private void init() {
 		try {
 			BufferedImage img;
@@ -55,7 +58,17 @@ public class SpriteSheet {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Create a new sprite from sheet
+	 * @param x Position X on the screen
+	 * @param y Position Y on the screen
+	 * @param width Width of sprite
+	 * @param height Height of sprite
+	 * @param sheet_x Tile X
+	 * @param sheet_y Tile Y
+	 * @return Sprite list reference
+	 */
 	public int createSprite(float x, float y, float width, float height, int sheet_x, int sheet_y) {
 		float[] pos = {
 			x, y,
@@ -84,7 +97,13 @@ public class SpriteSheet {
 		
 		return listi;
 	}
-	
+
+	/**
+	 * Convert Tile vectors to UV image vectors
+	 * @param sheet_x Tile X
+	 * @param sheet_y Tile Y
+	 * @return UV data for OpenGL
+	 */
 	public float[] getUVForSprite(int sheet_x, int sheet_y) {
 		float img_x = (float)((sheet_x * this.sprite_w) + (sheet_x * this.padding)) / (float)imgWidth;
 		float img_y = (float)((sheet_y * this.sprite_h) + (sheet_y * this.padding)) / (float)imgHeight;
@@ -100,7 +119,12 @@ public class SpriteSheet {
 		
 		return coords;
 	}
-	
+
+	/**
+	 * Get sprite by index
+	 * @param index List index
+	 * @return Sprite object
+	 */
 	public Sprite getSpriteByIndex(int index) {
 		return spriteList.get(index);
 	}

@@ -128,7 +128,11 @@ public class Render {
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisableClientState(GL_COLOR_ARRAY);
 	}
-	
+
+	/**
+	 * Draws sprite sheet
+	 * @param ss Sprite sheet
+	 */
 	public void drawSprites(SpriteSheet ss) {
 		for (Sprite sprite : ss.getSpriteList()) {
 			glPushMatrix();
@@ -151,8 +155,9 @@ public class Render {
 	 * @param x X component (leftmost)
 	 * @param y Y component (topmost)
 	 * @param f Font to render with
+	 * @return Width of string written on screen   
 	 */
-	public void drawText(String str, float x, float y, Font f) {
+	public float drawText(String str, float x, float y, Font f) {
 		float cursor = x;
 		
 		glEnable(GL_TEXTURE_2D);
@@ -228,6 +233,7 @@ public class Render {
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		
 		glBindTexture(GL_TEXTURE_2D, 0);
+		
+		return (x + cursor);
 	}
-
 }

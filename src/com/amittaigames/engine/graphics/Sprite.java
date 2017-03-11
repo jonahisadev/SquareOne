@@ -23,11 +23,21 @@ public class Sprite extends TexturedMesh {
 		this.width = pos[2] - this.x;
 		this.height = pos[5] - this.y;
 	}
-	
+
+	/**
+	 * Set the tile to use for the sprite
+	 * @param sheet_x Tile X
+	 * @param sheet_y Tile Y
+	 */
 	public void setImageLocation(int sheet_x, int sheet_y) {
 		updateCoords(parent.getUVForSprite(sheet_x, sheet_y));
 	}
-	
+
+	/**
+	 * Translate the sprite
+	 * @param x X direction
+	 * @param y Y direction
+	 */
 	public void translate(float x, float y) {
 		this.x += x;
 		this.y += y;
@@ -60,11 +70,19 @@ public class Sprite extends TexturedMesh {
 
 		updatePosition(pos);
 	}
-	
+
+	/**
+	 * Rotate the sprite
+	 * @param angle Angle to offset current angle
+	 */
 	public void rotate(float angle) {
 		this.angle += angle;
 	}
-	
+
+	/**
+	 * Scale sprite
+	 * @param scale Scale
+	 */
 	public void scale(float scale) {
 		this.scale += scale;
 	}
