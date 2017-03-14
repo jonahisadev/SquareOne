@@ -80,10 +80,10 @@ public class Rect extends Renderable {
 		this.y = y;
 
 		float[] pos = {
-				this.x, this.y,
-				this.x + this.width, this.y,
-				this.x + this.width, this.y + this.height,
-				this.x, this.y + this.height
+			this.x, this.y,
+			this.x + this.width, this.y,
+			this.x + this.width, this.y + this.height,
+			this.x, this.y + this.height
 		};
 
 		mesh.updatePosition(pos);
@@ -147,6 +147,32 @@ public class Rect extends Renderable {
 
 	public float getHeight() {
 		return height;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+
+		float[] pos = {
+			this.x, this.y,
+			this.x + this.width, this.y,
+			this.x + this.width, this.y + this.height,
+			this.x, this.y + this.height
+		};
+
+		mesh.updatePosition(pos);
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+
+		float[] pos = {
+			this.x, this.y,
+			this.x + this.width, this.y,
+			this.x + this.width, this.y + this.height,
+			this.x, this.y + this.height
+		};
+
+		mesh.updatePosition(pos);
 	}
 
 	public Mesh getMesh() {
