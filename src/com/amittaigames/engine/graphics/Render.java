@@ -142,9 +142,9 @@ public class Render {
 	
 	/**
 	 * Draws singular sprite
-	 * @param s Sprite
+	 * @param sprite Sprite
 	 */
-	public void drawSprite(Sprite s) {
+	public void drawSprite(Sprite sprite) {
 		glPushMatrix();
 
 		glScalef(sprite.getScale(), sprite.getScale(), 1);
