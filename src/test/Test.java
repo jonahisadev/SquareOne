@@ -12,6 +12,7 @@ public class Test extends CoreGame {
 	private int cycle = 0;
 	
 	public static void main(String[] args) {
+		Window.enable("anti_alias");
 		Window.init("Test", 800, 600, false, new Test());
 	}
 	

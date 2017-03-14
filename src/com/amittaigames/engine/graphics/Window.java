@@ -22,6 +22,9 @@ public class Window {
 	private static int LAST = 0;
 	private static int FPS;
 	
+	// Features
+	private static boolean anti_alias;
+	
 	/**
 	 * Create window and OpenGL context
 	 * @param title Window title
@@ -38,6 +41,8 @@ public class Window {
 		
 		if (!resizable)
 			glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+		if (anti_alias)
+			glfwWindowHint(GLFW_SAMPLES, 4);
 		
 		window = glfwCreateWindow(width, height, title, 0, 0);
 		if (window == 0) {
@@ -57,6 +62,8 @@ public class Window {
 		glOrtho(0, width, height, 0, -1, 1);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
+		
+		if (anti_alias) glEnable(GL_MULTISAMPLE);
 		
 		Window.game = game;
 		Window.render = new Render();
@@ -100,6 +107,17 @@ public class Window {
 		glfwTerminate();
 		
 		System.exit(0);
+	}
+
+	/**
+	 * Enable OpenGL features
+	 */
+	public static void enable(String... args) {
+		for (String s : args) {
+			if (s.equalsIgnoreCase("anti_alias")) {
+				anti_alias = true;
+			}
+		}
 	}
 
 	/**
