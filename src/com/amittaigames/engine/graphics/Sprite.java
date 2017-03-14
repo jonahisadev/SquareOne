@@ -14,6 +14,8 @@ public class Sprite extends TexturedMesh {
 	private float angle;
 	private float scale = 1f;
 	
+	private boolean customRender = false;
+	
 	public Sprite(float[] pos, float[] color, float[] coords, int[] list, int tex, SpriteSheet parent) {
 		super("", pos, color, coords, list, false, tex);
 		this.parent = parent;
@@ -86,6 +88,14 @@ public class Sprite extends TexturedMesh {
 	public void scale(float scale) {
 		this.scale += scale;
 	}
+	
+	/**
+	 * Set sprite to not render in spritesheet list
+	 * @param custom Will the sprite not render in list
+	 */
+	public void setCustomRender(boolean custom) {
+		this.customRender = custom;
+	}
 
 	public float getX() {
 		return x;
@@ -118,4 +128,13 @@ public class Sprite extends TexturedMesh {
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
+	
+	public SpriteSheet getParent() {
+		return parent;
+	}
+	
+	public boolean isCustomRender() {
+		return customRender;
+	}
+	
 }

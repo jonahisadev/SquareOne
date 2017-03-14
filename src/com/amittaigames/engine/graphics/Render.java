@@ -135,18 +135,27 @@ public class Render {
 	 */
 	public void drawSprites(SpriteSheet ss) {
 		for (Sprite sprite : ss.getSpriteList()) {
-			glPushMatrix();
-
-			glScalef(sprite.getScale(), sprite.getScale(), 1);
-			
-			glTranslatef(sprite.getX() + (sprite.getWidth() / 2), sprite.getY() + (sprite.getHeight() / 2), 0);
-			glRotatef(sprite.getAngle(), 0, 0, 1);
-			glTranslatef(-(sprite.getX() + (sprite.getWidth() / 2)), -(sprite.getY() + (sprite.getHeight() / 2)), 0);
-			
-			drawTexturedMesh(sprite);
-			
-			glPopMatrix();
+			if (sprite.isCustomRender()) continue;
+			drawSprite(sprite);
 		}
+	}
+	
+	/**
+	 * Draws singular sprite
+	 * @param s Sprite
+	 */
+	public void drawSprite(Sprite s) {
+		glPushMatrix();
+
+		glScalef(sprite.getScale(), sprite.getScale(), 1);
+		
+		glTranslatef(sprite.getX() + (sprite.getWidth() / 2), sprite.getY() + (sprite.getHeight() / 2), 0);
+		glRotatef(sprite.getAngle(), 0, 0, 1);
+		glTranslatef(-(sprite.getX() + (sprite.getWidth() / 2)), -(sprite.getY() + (sprite.getHeight() / 2)), 0);
+		
+		drawTexturedMesh(sprite);
+		
+		glPopMatrix();
 	}
 
 	/**
