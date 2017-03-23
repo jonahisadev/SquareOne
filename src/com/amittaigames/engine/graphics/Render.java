@@ -86,7 +86,7 @@ public class Render {
 		glEnableClientState(GL_VERTEX_ARRAY);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getColor());
-		glColorPointer(3, GL_FLOAT, 0, 0);
+		glColorPointer(4, GL_FLOAT, 0, 0);
 		glEnableClientState(GL_COLOR_ARRAY);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getCoords());
@@ -116,7 +116,7 @@ public class Render {
 		glEnableClientState(GL_VERTEX_ARRAY);
 		
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getColor());
-		glColorPointer(3, GL_FLOAT, 0, 0);
+		glColorPointer(4, GL_FLOAT, 0, 0);
 		glEnableClientState(GL_COLOR_ARRAY);
 		
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.getList());

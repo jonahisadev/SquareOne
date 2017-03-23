@@ -37,10 +37,10 @@ public class Rect extends Renderable {
 		};
 		
 		float[] color = {
-			1, 1, 1,
-			1, 1, 1,
-			1, 1, 1,
-			1, 1, 1
+			1, 1, 1, 1,
+			1, 1, 1, 1,
+			1, 1, 1, 1,
+			1, 1, 1, 1
 		};
 		
 		int[] list = {
@@ -108,11 +108,36 @@ public class Rect extends Renderable {
 		float gg = (float)g/255.0f;
 		float bb = (float)b/255.0f;
 		
-		float[] color = new float[12];
-		for (int i = 0; i < 12; i += 3) {
+		float[] color = new float[16];
+		for (int i = 0; i < 16; i += 4) {
 			color[i] = rr;
 			color[i + 1] = gg;
 			color[i + 2] = bb;
+			color[i + 3] = 1;
+		}
+		
+		mesh.updateColor(color);
+	}
+	
+	/**
+	 * Set the color
+	 * @param r Red component
+	 * @param g Green component
+	 * @param b Blue component
+	 * @param a Alpha component
+	 */
+	public void setColor(int r, int g, int b, int a) {
+		float rr = (float)r/255.0f;
+		float gg = (float)g/255.0f;
+		float bb = (float)b/255.0f;
+		float aa = (float)a/255.0f;
+		
+		float[] color = new float[16];
+		for (int i = 0; i < 16; i += 4) {
+			color[i] = rr;
+			color[i + 1] = gg;
+			color[i + 2] = bb;
+			color[i + 3] = aa;
 		}
 		
 		mesh.updateColor(color);
