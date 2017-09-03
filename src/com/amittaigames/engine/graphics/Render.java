@@ -77,8 +77,8 @@ public class Render {
 	 */
 	public void drawTexturedMesh(TexturedMesh mesh) {
 		glEnable(GL_TEXTURE_2D);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glBindTexture(GL_TEXTURE_2D, mesh.getTexture());
 		
 		glBindBuffer(GL_ARRAY_BUFFER, mesh.getPos());
@@ -148,6 +148,17 @@ public class Render {
 		glPushMatrix();
 
 		glScalef(sprite.getScale(), sprite.getScale(), 1);
+		
+		if (sprite.getFlipMode() != null) {
+			glMatrixMode(GL_TEXTURE);
+			glLoadIdentity();
+			if (sprite.getFlipMode() == Sprite.FlipMode.HORIZONTAL) {
+				glScalef(-1.0f, 1.0f, 1.0f);
+			} else if (sprite.getFlipMode() == Sprite.FlipMode.VERTICAL) {
+				glScalef(1.0f, -1.0f, 1.0f);
+			}
+			glMatrixMode(GL_MODELVIEW);
+		}
 		
 		glTranslatef(sprite.getX() + (sprite.getWidth() / 2), sprite.getY() + (sprite.getHeight() / 2), 0);
 		glRotatef(sprite.getAngle(), 0, 0, 1);

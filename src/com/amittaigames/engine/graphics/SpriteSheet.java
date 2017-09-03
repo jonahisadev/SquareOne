@@ -78,10 +78,10 @@ public class SpriteSheet {
 		};
 		
 		float[] color = {
-			1, 1, 1,
-			1, 1, 1,
-			1, 1, 1,
-			1, 1, 1
+			1, 1, 1, 1,
+			1, 1, 1, 1,
+			1, 1, 1, 1,
+			1, 1, 1, 1
 		};
 		
 		float[] coords = getUVForSprite(sheet_x, sheet_y);

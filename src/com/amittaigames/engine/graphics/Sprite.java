@@ -14,7 +14,14 @@ public class Sprite extends TexturedMesh {
 	private float angle;
 	private float scale = 1f;
 	
+	private FlipMode flipMode = null;
+	
 	private boolean customRender = false;
+	
+	public enum FlipMode {
+		HORIZONTAL,
+		VERTICAL
+	}
 	
 	public Sprite(float[] pos, float[] color, float[] coords, int[] list, int tex, SpriteSheet parent) {
 		super("", pos, color, coords, list, false, tex);
@@ -72,6 +79,15 @@ public class Sprite extends TexturedMesh {
 
 		updatePosition(pos);
 	}
+	
+	/**
+	 * Flip the sprite. Horizontal means the direction to flip,
+	 * not the axis to flip on
+	 * @param flipMode
+	 */
+	public void flip(FlipMode flipMode) {
+		this.flipMode = flipMode;
+	}
 
 	/**
 	 * Rotate the sprite
@@ -127,6 +143,10 @@ public class Sprite extends TexturedMesh {
 
 	public void setScale(float scale) {
 		this.scale = scale;
+	}
+	
+	public FlipMode getFlipMode() {
+		return flipMode;
 	}
 	
 	public SpriteSheet getParent() {
